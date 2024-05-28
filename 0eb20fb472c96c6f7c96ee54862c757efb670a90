@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb07e54c_7ec66907",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-05-28T15:02:45Z",
+      "side": 1,
+      "message": "Script passes linting checks (primarily bashate and shellcheck)\nCan source variables from environment, as arguments, or from the CLI",
+      "revId": "0eb20fb472c96c6f7c96ee54862c757efb670a90",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    }
+  ]
+}
