@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024 The LMinux Foundation <matthew.watkins@linuxfoundation.org>
+
 # Uncomment to enable debugging
 # set -vx
 
