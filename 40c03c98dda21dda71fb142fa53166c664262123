@@ -1,0 +1,232 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f44322df_8d867c70",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "Add because of the next fix:\n\n```# yamllint disable-line rule:line-length```",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7109cb3_cc9be433",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH}}-${{ github.event.inputs.GERRIT_CHANGE_ID || github.run_id }}",
+      "range": {
+        "startLine": 49,
+        "startChar": 9,
+        "endLine": 49,
+        "endChar": 69
+      },
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a48f3aa4_7d69f476",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "9627b9a144f2a2cad70707ddfae87c87dce60729 # v0.8",
+      "range": {
+        "startLine": 57,
+        "startChar": 40,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83ba63c2_e0d1c73f",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "Cut this job",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c5edac9_8e923dff",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "No tox, just cut this",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41a5982_fd53455e",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "No tox, just cut this",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "066ebf36_47902ec8",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "No tox, just cut this",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d916bf6_bef97dcb",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "No tox, just cut this",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3f05a3_5bfb07f6",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "Add the following job:\n\n```yaml\nlint:\n  needs: clear-vote\n  uses: lfit/releng-reusable-workflows/.github/workflows/compose-repo-linting.yaml@main\n  with:\n    GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH }}\n    GERRIT_CHANGE_ID: ${{ inputs.GERRIT_CHANGE_ID }}\n    GERRIT_CHANGE_NUMBER: ${{ inputs.GERRIT_CHANGE_NUMBER }}\n    GERRIT_CHANGE_URL: ${{ inputs.GERRIT_CHANGE_URL }}\n    GERRIT_EVENT_TYPE: ${{ inputs.GERRIT_EVENT_TYPE }}\n    GERRIT_PATCHSET_NUMBER: ${{ inputs.GERRIT_PATCHSET_NUMBER }}\n    GERRIT_PATCHSET_REVISION: ${{ inputs.GERRIT_PATCHSET_REVISION }}\n    GERRIT_PROJECT: ${{ inputs.GERRIT_PROJECT }}\n    GERRIT_REFSPEC: ${{ inputs.GERRIT_REFSPEC }}\n```",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39be501e_9b18c81a",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "lint",
+      "range": {
+        "startLine": 202,
+        "startChar": 12,
+        "endLine": 202,
+        "endChar": 68
+      },
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebbee2b_3b77a81b",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "9627b9a144f2a2cad70707ddfae87c87dce60729 # v0.8",
+      "range": {
+        "startLine": 208,
+        "startChar": 40,
+        "endLine": 208,
+        "endChar": 44
+      },
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2bbbb6_b41249cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-29T18:56:36Z",
+      "side": 1,
+      "message": "Need to tighten up the GHA itself and use our upstream reusable linting workflow that does pre-commit running (minus the gitlint step)",
+      "revId": "40c03c98dda21dda71fb142fa53166c664262123",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    }
+  ]
+}
