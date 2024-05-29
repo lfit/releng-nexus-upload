@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024 The Linux Foundation <matthew.watkins@linuxfoundation.org>
+
 [gerrit]
 host=gerrit.linuxfoundation.org
 port=29418
