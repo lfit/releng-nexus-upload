@@ -2,8 +2,8 @@
 
 Script to automate the upload of files to Nexus servers
 
-[Source Code in Gerrit](https://gerrit.linuxfoundation.org/infra/admin/repos/releng/nexus-upload,general)
-[Source Code on GitHub](https://github.com/lfit/releng-nexus-upload)
+- [Source Code in Gerrit](https://gerrit.linuxfoundation.org/infra/admin/repos/releng/nexus-upload,general)
+- [Source Code on GitHub](https://github.com/lfit/releng-nexus-upload)
 
 ## Getting started
 
@@ -17,12 +17,12 @@ Help is available directly from the command-line:
 
 ```console
 ./nexus-upload.sh -h
-Usage: nexus-upload.sh [-h] [-u username] [-p password] [-s upload-url] [-e file extension] [-d folder]
+Usage: nexus-upload.sh [-h] [-u user] [-p password] [-s upload-url] [-e extension] [-d folder]
  -h  display this help and exit
  -u  username (or export variable NEXUS_USERNAME)
  -p  password (or export variable NEXUS_PASSWORD)
  -s  upload URL (or export variable NEXUS_URL)
-  e.g. https://nexus3.o-ran-sc.org/repository/datasets/
+     e.g. https://nexus3.o-ran-sc.org/repository/datasets/
  -e  file extensions to match, e.g. csv, txt
  -d  local directory hosting files/content to be uploaded
 ```
@@ -39,5 +39,7 @@ specified, then the script itself may be matched by the default wildcard (\*) fi
 prevent this, specify an extension restricting the files to be uploaded using the "-e" flag. Alternatively,
 put the files into a local folder, and sepficy the folder location using the "-d" flag.
 
+<!--
 [comment]: # SPDX-License-Identifier: Apache-2.0
 [comment]: # Copyright 2024 The Linux Foundation <matthew.watkins@linuxfoundation.org>
+-->

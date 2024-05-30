@@ -17,7 +17,7 @@ SUCCESSES="0"; FAILURES="0"
 show_help() {
     # Command usage help
     cat << EOF
-Usage: ${0##*/} [-h] [-u username] [-p password] [-s upload-url] [-e match file extensions] [-d upload/content folder]
+Usage: ${0##*/} [-h] [-u user] [-p password] [-s upload-url] [-e extensions] [-d folder]
     -h  display this help and exit
     -u  username (or export variable NEXUS_USERNAME)
     -p  password (or export variable NEXUS_PASSWORD)
