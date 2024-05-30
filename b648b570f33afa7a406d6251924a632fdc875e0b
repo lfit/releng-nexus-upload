@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38dbb2c3_3c3e68be",
+        "filename": ".github/workflows/gerrit-verify.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-30T12:36:22Z",
+      "side": 1,
+      "message": "Apparently I missed asking you to cut this job as well. It\u0027s handled by the lint job you added at my request.",
+      "revId": "b648b570f33afa7a406d6251924a632fdc875e0b",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24c340ad_49d47545",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2024-05-30T12:36:22Z",
+      "side": 1,
+      "message": "One more modification that I missed in my previous review.",
+      "revId": "b648b570f33afa7a406d6251924a632fdc875e0b",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    }
+  ]
+}
