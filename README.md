@@ -1,43 +1,78 @@
-# Nexus file upload shell script
+# Sonatype Nexus File Upload
 
-Script to automate the upload of files to Nexus servers
+Automates the upload of files/artefacts from GitHub Actions to Sonatype Nexus servers
 
-- [Source Code in Gerrit](https://gerrit.linuxfoundation.org/infra/admin/repos/releng/nexus-upload,general)
-- [Source Code on GitHub](https://github.com/lfit/releng-nexus-upload)
+- [Source Code on GitHub](https://github.com/ModeSevenIndustrialSolutions/nexus-upload-action)
 
-## Getting started
+## Sonatype Nexus Upload GitHub Action
 
-Make sure the script is executable on your system
+This repository contains a GitHub Action to upload files to Sonatype Nexus servers.
 
-```console
-chmod a+x nexus-upload.sh
-```
-
-Help is available directly from the command-line:
+The action looks for a cURL configuration file in the current working directory called:
 
 ```console
-./nexus-upload.sh -h
-Usage: nexus-upload.sh [-h] [-u user] [-p password] [-s upload-url] [-e extension] [-d folder]
- -h  display this help and exit
- -u  username (or export variable NEXUS_USERNAME)
- -p  password (or export variable NEXUS_PASSWORD)
- -s  upload URL (or export variable NEXUS_URL)
-     e.g. https://nexus3.o-ran-sc.org/repository/datasets/
- -e  file extensions to match, e.g. csv, txt
- -d  local directory hosting files/content to be uploaded
+.netrc
 ```
 
-You can set the username, password and URL for the nexus server by exporting the variables:
+This should contain the Nexus server name, along with credentials providing write access to the repository.
 
-- NEXUS_URL (mandatory, must be set or -s flag supplied with a valid URL)
-- NEXUS_USERNAME (if not set or supplied with -u flag, will be prompted)
-- NEXUS_PASSWORD (if not set or supplied with -p flag, will be prompted)
+Here's an example of the configuration file content/format:
 
-A local folder containing files to upload can be supplied using the optional "-d" flag. If this is not set
-then the current directory will be used, but caution should be exercised, as if no file extensions are
-specified, then the script itself may be matched by the default wildcard (\*) file matching behaviour. To
-prevent this, specify an extension restricting the files to be uploaded using the "-e" flag. Alternatively,
-put the files into a local folder, and sepficy the folder location using the "-d" flag.
+```console
+machine [nexus-server]
+  login [nexus-username]
+  password [nexus-password]
+```
+
+NOTE: respect the indentation of the second and third lines in the example above
+
+A local folder containing the files to upload is mandatory. If no file extensions are specified,
+then the default behaviour is wildcard (\*) file matching. You can prevent this, by specifying
+a file suffix/extension restricting the files to be uploaded to a subset of the folder content.
+
+### Action Inputs/Outputs
+
+#### Mandatory Inputs
+
+- nexus_username
+- nexus_password
+- nexus_server
+- nexus_repository
+- upload_directory
+
+#### Optional Inputs
+
+- filename_suffix
+- testing [ true | false ]
+
+When testing is set to "true" an upload directory and sample text file (with a date/time stamp)
+will automatically be created. This prevents the need to create test data or add files directly
+to your repository when testing the action.
+
+<!--
+  # May be superfluous parameter
+- repository_format
+  -->
+
+#### Outputs
+
+- errors [ true | false ]
+- successes [ numeric value ]
+- failures [ numeric value ]
+
+### Usage Example
+
+An example workflow has been provided that can be invoked on demand:
+
+[.github/workflows/test.yaml](https://github.com/ModeSevenIndustrialSolutions/nexus-upload-action/blob/main/.github/workflows/test.yaml)
+
+### Further Testing
+
+A shell script has also been provided, along with a setup file. The shell script acts as
+a thin wrapper, extracting the functional shell code from the YAML file, then running it.
+The supplementary setup file provides the required parameters that would otherwise be
+pass as inputs by a workflow. You still need to create a .netrc file to configure the
+environment with the nexus server and credentials providing write access to the repository.
 
 <!--
 [comment]: # SPDX-License-Identifier: Apache-2.0
