@@ -1,0 +1,33 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024 The Linux Foundation <matthew.watkins@linuxfoundation.org>
+
+name: "Nexus Upload"
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Create test file to upload"
+        run: |
+          # Create test file with date/time stamp
+          DATETIME=$(date '+%Y%m%d-%H%M')
+          echo "Test file $DATETIME" > "files/upload-$DATETIME.txt"
+
+      - name: "Nexus Upload"
+        # ToDo: change/update the line below when testing is completed
+        uses: ModeSevenIndustrialSolutions/nexus-upload-action@v0.0.15
+        with:
+          nexus_server: nexus3.o-ran-sc.org
+          nexus_username: upload-test
+          nexus_password: ${{ secrets.nexus_password }} # Repository secret
+          nexus_repository: testing
+          upload_directory: files
+          filename_suffix: .txt # Optional
+          # repository_format: raw (not implemented)
