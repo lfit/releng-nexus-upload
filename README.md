@@ -1,11 +1,13 @@
-# Nexus file upload shell script
+# Nexus Upload Tools
 
 Script to automate the upload of files to Nexus servers
 
 - [Source Code in Gerrit](https://gerrit.linuxfoundation.org/infra/admin/repos/releng/nexus-upload,general)
 - [Source Code on GitHub](https://github.com/lfit/releng-nexus-upload)
 
-## Getting started
+## Nexus Upload Shell Script
+
+### Getting Started
 
 Make sure the script is executable on your system
 
@@ -38,6 +40,67 @@ then the current directory will be used, but caution should be exercised, as if 
 specified, then the script itself may be matched by the default wildcard (\*) file matching behaviour. To
 prevent this, specify an extension restricting the files to be uploaded using the "-e" flag. Alternatively,
 put the files into a local folder, and sepficy the folder location using the "-d" flag.
+
+## Nexus Upload GitHub Action
+
+GitHub Action to upload files to Sonatype Nexus Repository servers.
+
+Relies on the script located in the repository here:
+
+<https://github.com/lfit/releng-nexus-upload>
+
+### Inputs/Outputs
+
+**Required inputs:**
+
+- nexus_username
+- nexus_password
+- nexus_server
+- nexus_repository
+
+**Optional inputs:**
+
+- directory
+- filename_suffix
+<!--
+  # May be superfluous parameter
+- repository_format
+  -->
+
+**Outputs:**
+
+- upload-status [ success | failure ]
+
+### Usage Example
+
+```yaml
+---
+name: "Nexus Upload"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-files:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: "Nexus Upload"
+      uses: ModeSevenIndustrialSolutions/nexus-upload-action@v1
+      with:
+      nexus_server: nexus3.o-ran-sc.org
+      nexus_username: admin
+      nexus_password: ${{ secrets.nexus_password }} # Repository secret
+      nexus_repository: datasets
+      directory: files # Optional
+      filename_suffix: txt # Optional
+```
+
+<!--
+      # Removed from the above console output
+      repository_format: raw # Not implemented yet (may be superfluous)
+-->
 
 <!--
 [comment]: # SPDX-License-Identifier: Apache-2.0
