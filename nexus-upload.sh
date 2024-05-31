@@ -6,9 +6,7 @@
 # Uncomment to enable debugging
 # set -vx
 
-# Initialise variables
-DIRECTORY="."
-FILE_EXTENSION=""
+CURL_CONFIG=".netrc"
 # Count file upload successes/failures
 SUCCESSES="0"; FAILURES="0"
 
@@ -17,14 +15,11 @@ SUCCESSES="0"; FAILURES="0"
 show_help() {
     # Command usage help
     cat << EOF
-Usage: ${0##*/} [-h] [-u user] [-p password] [-s upload-url] [-e extensions] [-d folder]
+Usage: ${0##*/} [-h] -r repository -d directory [-e file extension]
     -h  display this help and exit
-    -u  username (or export variable NEXUS_USERNAME)
-    -p  password (or export variable NEXUS_PASSWORD)
-    -s  upload URL (or export variable NEXUS_URL)
-        e.g. https://nexus3.o-ran-sc.org/repository/datasets/
-    -e  file extensions to match, e.g. csv, txt
-    -d  local directory hosting files/content to be uploaded
+    -r  remote repository name (mandatory)
+    -d  local directory of files to upload (mandatory)
+    -e  match file extension (optional)
 EOF
 }
 
@@ -33,20 +28,24 @@ error_help() {
     exit 1
 }
 
-transfer_report() {
-    echo "Successes: $SUCCESSES   Failures: $FAILURES"
-    if [ "$FAILURES" -gt 0 ]; then
-        exit 1
+status_report() {
+    if [ "$FAILURES" -eq 0 ]; then
+        ERRORS="false"; EXIT_STATUS="0"
     else
-        exit 0
+        ERRORS="true"; EXIT_STATUS="1"
     fi
+
+    # Print a helpful status summary
+    echo "Errors: $ERRORS   Successes: $SUCCESSES   Failures: $FAILURES"
+    export ERRORS SUCCESSES FAILURES
+    exit "$EXIT_STATUS"
 }
 
 curl_upload() {
     FILE="$1"
     echo "Sending: ${FILE}"
-    # echo "Running: $CURL --fail [CREDENTIALS] --upload-file $FILE $NEXUS_URL"
-    if ("$CURL" --fail -u "$CREDENTIALS" --upload-file "$FILE" "$NEXUS_URL"); then #> /dev/null 2>&1
+    if ("$CURL" --no-progress-meter --fail --netrc-file "$CURL_CONFIG" \
+        --upload-file "$FILE" "$NEXUS_URL"); then #> /dev/null 2>&1
         SUCCESSES=$((SUCCESSES+1))
     else
         FAILURES=$((FAILURES+1))
@@ -59,28 +58,28 @@ process_files() {
     done
 }
 
-# Validate/check arguments and variables
+# Check environment and set variables
 
 CURL=$(which curl)
 if [ ! -x "$CURL" ];then
-    echo "CURL was not found in your PATH"; exit 1
+    echo "cURL was not found in your PATH"; exit 1
 fi
 
-while getopts hu:p:s:d:e: opt; do
+while getopts hr:d:e: opt; do
     case $opt in
-        u)  NEXUS_USERNAME="$OPTARG"
+        r)  NEXUS_REPOSITORY="$OPTARG"
             ;;
-        p)  NEXUS_PASSWORD="$OPTARG"
-            ;;
-        s)  NEXUS_URL="$OPTARG"
-            ;;
-        e)  FILE_EXTENSION="$OPTARG"
-            ;;
-        d)  DIRECTORY="$OPTARG"
-            if [ ! -d "$DIRECTORY" ]; then
-                echo "Error: specified directory invalid"; exit 1
+        d)  UPLOAD_DIRECTORY="$OPTARG"
+            if [ ! -d "$UPLOAD_DIRECTORY" ]; then
+                echo "Error: specified upload directory not found"; exit 1
             fi
             ;;
+        e)  FILE_EXTENSION="$OPTARG" # Not mandatory
+            ;;
+
+        # Not implemented; this parameter may be superfluous
+        # REPOSITORY_FORMAT
+
         h|?)
             show_help
             exit 0
@@ -89,50 +88,52 @@ while getopts hu:p:s:d:e: opt; do
             error_help
         esac
 done
-shift "$((OPTIND -1))"   # Discard the options
+shift "$((OPTIND -1))" # Discard the options
 
-# Gather location of files to upload (in an array)
-mapfile -t UPLOAD_FILES_ARRAY < <(find "$DIRECTORY" -name "*$FILE_EXTENSION" -type f -print )
+# Check for required parameters and setup
+if [ -z ${NEXUS_REPOSITORY+x} ]; then
+    echo "Supplying the repository is mandatory"
+    ERRORS="true"
+fi
+if [ -z ${UPLOAD_DIRECTORY+x} ]; then
+    echo "Supplying the upload directory is mandatory"
+    ERRORS="true"
+fi
+if [ ! -f "$CURL_CONFIG" ];then
+    echo "cURL configuration file was not found ($CURL_CONFIG)"
+    ERRORS="true"
+else
+    # The server name is extracted from the configuration file
+    NEXUS_SERVER=$(grep machine "$CURL_CONFIG" | awk '{print $2}')
+fi
+if [ "$ERRORS" = "true" ];then
+    FAILURES=$((FAILURES+1))
+    status_report
+fi
+
+# Gather files to upload into an array (does not traverse directories recursively)
+mapfile -t UPLOAD_FILES_ARRAY < <(find "$UPLOAD_DIRECTORY" -name "*$FILE_EXTENSION" -maxdepth 1 -type f -print)
 
 if [ "${#UPLOAD_FILES_ARRAY[@]}" -ne 0 ]; then
-    echo "Files found to upload: ${#UPLOAD_FILES_ARRAY[@]}"
-    # echo "Files matching pattern:"  # Uncomment for debugging
-    # echo "${UPLOAD_FILES_ARRAY[@]}"  # Uncomment for debugging
+    echo "Number of files to upload: ${#UPLOAD_FILES_ARRAY[@]}"
 else
-    echo "Error: no files found to process matching pattern"
-    exit 1
+    echo "No files found matching pattern: $UPLOAD_DIRECTORY/*$FILE_EXTENSION"
+    FAILURES=$((FAILURES+1))
+    status_report
 fi
 
-if [ -z "$NEXUS_URL" ]; then
-    echo "ERROR: Specifying the upload/repository URL is mandatory"; exit 1
+# Combine separate parameters into NEXUS_URL
+if [[ -n ${NEXUS_SERVER+x} ]] && [[ -n ${NEXUS_REPOSITORY+x} ]]; then
+    NEXUS_URL="https://$NEXUS_SERVER/repository/$NEXUS_REPOSITORY/"
 else
-    if  [[ ! "$NEXUS_URL" == "http://"* ]] && \
-        [[ ! "$NEXUS_URL" == "https://"* ]]; then
-        echo "Error: Nexus server must be specified as a URL"; exit 1
-    fi
+    echo "A required parameter was not supplied"
+    echo "NEXUS_SERVER: $NEXUS_SERVER"
+    echo "NEXUS_REPOSITORY: $NEXUS_REPOSITORY"; exit 1
 fi
 
-# Prompt for credentials if not specified explicitly or present in the shell environment
-if [ -z "$NEXUS_USERNAME" ]; then
-    echo -n "Enter username: "
-    read -r NEXUS_USERNAME
-    if [[ -z "$NEXUS_USERNAME" ]]; then
-        echo "ERROR: Username cannot be empty"; exit 1
-    fi
-fi
-if [ -z "$NEXUS_PASSWORD" ]; then
-    echo -n "Enter password: "
-    read -s -r NEXUS_PASSWORD  # Does not echo to terminal/console
-    echo ""
-    if [[ -z "$NEXUS_PASSWORD" ]]; then
-        echo "ERROR: Password cannot be empty"; exit 1
-    fi
-fi
+# Example .netrc configuration file format:
+# machine $NEXUS_SERVER login $NEXUS_USERNAME password $NEXUS_PASSWORD
 
-CREDENTIALS="$NEXUS_USERNAME:$NEXUS_PASSWORD"
-
-# Main script entry point
-
-echo "Uploading to: $NEXUS_URL"
+echo "Attempting uploads to: $NEXUS_URL"
 process_files
-transfer_report
+status_report
