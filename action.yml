@@ -1,0 +1,68 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024 The Linux Foundation <matthew.watkins@linuxfoundation.org>
+
+name: "Nexus Upload"
+description: "Nexus Upload Action"
+
+inputs:
+  NEXUS_USERNAME:
+    description: "Nexus username"
+    required: true
+  NEXUS_PASSWORD:
+    description: "Nexus password"
+    required: true
+  NEXUS_SERVER:
+    description: "Nexus server"
+    required: true
+  NEXUS_REPOSITORY:
+    description: "Nexus repository"
+    required: true
+  UPLOAD_DIRECTORY:
+    description: "Directory containing files to upload"
+    required: true
+  FILENAME_SUFFIX:
+    description: "File extension to match"
+    required: false
+
+  # Not implemented yet; repository_format may be superfluous
+  # We might need it in future, so leaving a reminder here
+  # repository_format:
+  #   description: "Nexus repository format"
+  #   required: false
+
+outputs:
+  SUCCESSES:
+    description: "Number of successful uploads"
+    value: ${{ steps.nexus-upload.outputs.successes }}
+  FAILURES:
+    description: "Number of failed uploads"
+    value: ${{ steps.nexus-upload.outputs.failures }}
+  ERRORS:
+    description: "Occurence of errors [true|false]"
+    value: ${{ steps.nexus-upload.outputs.errors }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Writing cURL configuration file"
+      run: |
+        # Writing cURL configuration file
+        echo "machine ${{ inputs.NEXUS_SERVER }} login ${{ inputs.NEXUS_USERNAME }} \
+          password ${{ secrets.NEXUS_PASSWORD }}" > .netrc
+
+    - name: "Uploading files to Nexus"
+      id: nexus-upload
+      run: |
+        # Uploading files to Nexus server
+        if [ -z ${{ inputs.FILENAME_SUFFIX }} ]; then
+          nexus-upload.sh -r ${{ inputs.NEXUS_REPOSITORY }} -d ${{ inputs.UPLOAD_DIRECTORY }}
+        else
+          nexus-upload.sh -r ${{ inputs.NEXUS_REPOSITORY }} \
+            -d ${{ inputs.UPLOAD_DIRECTORY }} -e ${{ inputs.FILENAME_SUFFIX }}
+        fi
+
+    - name: "Removing cURL configuration file"
+      run: |
+        # Removing cURL configuration file
+        rm .netrc
