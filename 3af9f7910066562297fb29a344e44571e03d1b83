@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce97564b_de75042d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 65
+      },
+      "writtenOn": "2024-05-31T14:32:47Z",
+      "side": 1,
+      "message": "While the content looks good to me, I wonder if this is a good candidate to place in here: https://github.com/lfit/releng-reusable-workflows/tree/main/.github/actions\n\nSince it is quite likely that the reusable release workflows will be the #1 users. \n\nBut let me know if you guys think otherwise.",
+      "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    }
+  ]
+}
