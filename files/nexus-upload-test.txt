@@ -1,4 +1,5 @@
-# Test file uploaded by nexus-upload-action
-# See: https://github.com/ModeSevenIndustrialSolutions/nexus-upload-action
+# Test file uploaded by releng-nexus-upload
+# See: https://github.com/lfit/releng-nexus-upload
+
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2024 The Linux Foundation <matthew.watkins@linuxfoundation.org>

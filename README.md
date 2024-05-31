@@ -19,14 +19,14 @@ Help is available directly from the command-line:
 
 ```console
 ./nexus-upload.sh -h
-Usage: nexus-upload.sh [-h] [-u user] [-p password] [-s upload-url] [-e extension] [-d folder]
+Usage: nexus-upload.sh [-h] [-u user] [-p password] [-s upload-url] [-d folder] [-e extension]
  -h  display this help and exit
  -u  username (or export variable NEXUS_USERNAME)
  -p  password (or export variable NEXUS_PASSWORD)
  -s  upload URL (or export variable NEXUS_URL)
      e.g. https://nexus3.o-ran-sc.org/repository/datasets/
- -e  file extensions to match, e.g. csv, txt
  -d  local directory hosting files/content to be uploaded
+ -e  file extensions to match, e.g. csv, txt
 ```
 
 You can set the username, password and URL for the nexus server by exporting the variables:
@@ -69,7 +69,9 @@ Relies on the script located in the repository here:
 
 **Outputs:**
 
-- upload-status [ success | failure ]
+- successes [ numeric value ]
+- failures [ numeric value ]
+- errors [ true | false ]
 
 ### Usage Example
 

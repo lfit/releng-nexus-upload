@@ -10,8 +10,8 @@
 NEXUS_USERNAME="admin"
 NEXUS_SERVER="nexus3.o-ran-sc.org"
 NEXUS_REPOSITORY="datasets"
-FILENAME_SUFFIX=".txt"
 UPLOAD_DIRECTORY="files"
+FILENAME_SUFFIX=".txt"
 
 # Set this to the current password from 1Password
 # e.g. ORAN Nexus3 (admin user)
