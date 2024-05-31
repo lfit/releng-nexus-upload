@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ed98f7a_a3b86dba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-05-31T13:58:09Z",
+      "side": 1,
+      "message": "Tested here:\nhttps://github.com/ModeSevenIndustrialSolutions/nexus-upload-action/actions/runs/9319254478/job/25653377536",
+      "revId": "36f47eff4d744ffdae997ee6aff64b8b17e2aca4",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    }
+  ]
+}
