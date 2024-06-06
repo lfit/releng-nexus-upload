@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2650563f_356fec61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-06-06T14:38:07Z",
+      "side": 1,
+      "message": "I can\u0027t seem to get the shell script (nexus-upload.sh) called in \"action.yml\" step \"id: nexus-upload\" to output ERRORS/SUCCESSES/FAILURES in a way that can be captured in the external workflow (nexus.yaml)\nWhat am I doing wrong?",
+      "revId": "8599cc6b180c7e15bfce642765ce46f12ea27c98",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    }
+  ]
+}

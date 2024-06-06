@@ -18,6 +18,24 @@
       "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "348723a4_38b58997",
+        "filename": ".github/workflows/nexus.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-06-06T14:38:07Z",
+      "side": 1,
+      "message": "Not yet, as I don\u0027t have permission to create the required password credential/secret there and at this stage that would prevent further testing.",
+      "parentUuid": "491c4488_2333e959",
+      "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "ce97564b_de75042d",
@@ -52,6 +70,24 @@
       "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ecb3ca_58ee1d08",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-06-06T14:38:07Z",
+      "side": 1,
+      "message": "I\u0027ve updated this to point to the LF Github/mirror repo and set the action version to v1. We will have to push a tag when this has been tested.",
+      "parentUuid": "f229253e_ea20311d",
+      "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29b64ac6_305b4fd7",
@@ -65,6 +101,24 @@
       "writtenOn": "2024-05-31T15:37:30Z",
       "side": 1,
       "message": "This makes this plain text. This should be moved to a `secrets` clause",
+      "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c49f421_ec0ce46d",
+        "filename": "action.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-06-06T14:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29b64ac6_305b4fd7",
       "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
       "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
     },
@@ -86,6 +140,24 @@
       "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02106129_e2d67a18",
+        "filename": "action.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-06-06T14:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8ea9f55_034d3ac0",
+      "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f5d514b_37b120a0",
@@ -99,6 +171,24 @@
       "writtenOn": "2024-05-31T15:37:30Z",
       "side": 1,
       "message": "curl should be configured to use a `.netrc` file instead of passing credentials directly on the command line.",
+      "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4f662ad_cbccb93b",
+        "filename": "nexus-upload.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-06-06T14:38:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f5d514b_37b120a0",
       "revId": "3af9f7910066562297fb29a344e44571e03d1b83",
       "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
     }
