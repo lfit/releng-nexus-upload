@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06c84d07_50c3be10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 605
+      },
+      "writtenOn": "2024-06-10T11:32:00Z",
+      "side": 1,
+      "message": "Reflects all the latest test/changes from:\nhttps://github.com/ModeSevenIndustrialSolutions/nexus-upload-action",
+      "revId": "2b5e1b67b7851b33294665285c5fca4ca588da8a",
+      "serverId": "f2a2391d-0403-4fa5-b183-4056999a8a09"
+    }
+  ]
+}
